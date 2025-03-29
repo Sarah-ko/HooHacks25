@@ -98,26 +98,23 @@
     <div class="container">
         <h3 class="mb-4">Recent Posts</h3>
         <div class="row">
-            <!-- Example post cards - replace with loop when connected to database -->
-            <div class="row">
-                {% for post in posts %}
+            <!-- Loop through posts -->
+            {% for post in posts %}
                 <div class="col-md-4 post-card">
-                  <div class="card">
-                    {% if post.image %}
-                    <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
-                    {% endif %}
-                    <div class="card-body">
-                      <h5 class="card-title">{{ post.title }}</h5>
-                      <p class="card-text">{{ post.content }}</p>
+                    <div class="card">
+                        {% if post.image %}
+                            <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ post.title }}</h5>
+                            <p class="card-text">{{ post.content }}</p>
+                        
+                        </div>
                     </div>
-                  </div>
                 </div>
-                {% endfor %}
-              </div>
-            <!-- Add more cards dynamically later -->
+            {% endfor %}
         </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
