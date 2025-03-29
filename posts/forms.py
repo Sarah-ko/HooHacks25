@@ -4,12 +4,12 @@ from .models import Post
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['title', 'content']
-        #fields = ['title', 'content', 'image']
+        #fields = ['title', 'content']
+        fields = ['title', 'content', 'image']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter title'}),
             'content': forms.Textarea(attrs={'class': 'form-control', 'rows': 5, 'placeholder': 'Write your post...'}),
-            #'image': forms.ClearableFileInput(attrs={'class': 'form-control-file', 'accept': 'image/*'})
+            'image': forms.ClearableFileInput(attrs={'class': 'form-control-file', 'accept': 'image/*'})
         }
     
     def clean_image(self):
