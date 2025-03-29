@@ -5,12 +5,31 @@
     <meta charset="UTF-8">
     <title>{% block title %}UVA Exchange{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <style>
+        .navbar-custom {
+            background-color: #232D4B; /* Navy Blue */
+        }
+
+        .navbar-brand {
+            font-family: 'Anton', sans-serif;
+            font-size: 2rem;
+            color: #E57200 !important; /* UVA Orange */
+        }
+
+        .navbar-brand:hover {
+            color: #cc6600 !important;
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-light bg-light p-3">
-        <a class="navbar-brand" href="/">UVA Exchange</a>
-        <!-- You can add login/logout buttons later -->
+    {% block navbar %}
+    <nav class="navbar navbar-custom p-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a class="navbar-brand" href="/">UVA Exchange</a>
+        </div>
     </nav>
+    {% endblock %}
 
     <div class="container mt-4">
         {% block content %}{% endblock %}
