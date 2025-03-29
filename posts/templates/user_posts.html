@@ -1,22 +1,83 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>My Posts</h2>
-  {% if posts %}
-        <ul>
-            {% for post in posts %}
-                <li>
-                    <h2>{{ post.title }}</h2>
-                    <p>{{ post.content }}</p>
-                    {% if post.image %}
-                        <img src="{{ post.image.url }}" alt="{{ post.title }}" width="300">  <!-- Add this line to show the image -->
-                    {% endif %}
-                    <small>Created at: {{ post.created_at }}</small>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>You have no posts yet.</p>
-    {% endif %}
+<style>
+    body {
+        background: url("https://news.virginia.edu/sites/default/files/uva_east_rotunda_sunset.jpg") no-repeat center center fixed;
+        background-size: cover;
+        font-family: 'Poppins', sans-serif;
+        color: rgb(0, 0, 0);
+    }
 
+    .section-header {
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 40px;
+        color: #000000;
+        margin-top: 40px;
+    }
+
+    .post-card {
+        background-color: rgba(255, 255, 255, 0.95);
+        color: #232D4B;
+        border: 2px solid #E57200;
+        border-radius: 16px;
+        padding: 20px;
+        margin-bottom: 30px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+        transition: transform 0.2s ease;
+    }
+
+    .post-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .post-title {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #E57200;
+        margin-bottom: 10px;
+    }
+
+    .post-content {
+        font-size: 1rem;
+        margin-bottom: 15px;
+    }
+
+    .post-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin-bottom: 15px;
+    }
+
+    .post-date {
+        font-size: 0.9rem;
+        color: #555;
+    }
+</style>
+
+<div class="container">
+    <h2 class="section-header">My Posts</h2>
+
+    {% if posts %}
+        <div class="row">
+            {% for post in posts %}
+                <div class="col-md-6 offset-md-3">
+                    <div class="post-card">
+                        <h3 class="post-title">{{ post.title }}</h3>
+                        {% if post.image %}
+                            <img src="{{ post.image.url }}" alt="{{ post.title }}" class="post-image">
+                        {% endif %}
+                        <p class="post-content">{{ post.content }}</p>
+                        <div class="post-date">Created at: {{ post.created_at }}</div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-center">You have no posts yet.</p>
+    {% endif %}
+</div>
 {% endblock %}
