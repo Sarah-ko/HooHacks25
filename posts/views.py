@@ -13,12 +13,12 @@ def create_post(request):
             post = form.save(commit=False)
             post.author = request.user
             post.save()
-            return redirect('home')
+            return redirect('my_posts')
         else:
             print(form.errors)
     else:
         form = PostForm()
-    return render(request, 'create_post.html', {'form': form})
+    return render(request, 'posts/create_post.html', {'form': form})
 
 @login_required
 def user_posts(request):
