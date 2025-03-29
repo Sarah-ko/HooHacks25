@@ -1,0 +1,14 @@
+# .gitignore outside the venv folder
+venv/                # Ignore the virtual environment directory
+*.pyc                # Ignore Python bytecode files
+__pycache__/         # Ignore Python cache directories
+db.sqlite3           # Ignore SQLite database files
+*.log                # Ignore log files
+*.env                # Ignore environment variable files (e.g., .env)
+*.pot                # Ignore translation files
+*.mo                 # Ignore compiled translation files
+
+# IDE files
+.vscode/
+.idea/
+*.swp
