@@ -94,7 +94,7 @@
         <div class="d-flex align-items-center gap-2">
             <a href="/create" class="btn btn-uva-orange">Create Post</a>
             <a href="/checkout" class="btn text-white">
-                <i class="bi bi-cart-fill" style="font-size: 1.5rem;"></i>
+                <i class="bi bi-heart-fill" style="font-size: 1.5rem;"></i>
             </a>
             {% if user.is_authenticated %}
                 <span class="text-white me-2">Hi, {{ user.first_name }}</span>
@@ -117,22 +117,21 @@
         <h3 class="mb-4">Recent Posts</h3>
         <div class="row">
             <!-- Example post cards - replace with loop when connected to database -->
-            <div class="col-md-4 post-card">
-                <div class="card">
+            <div class="row">
+                {% for post in posts %}
+                <div class="col-md-4 post-card">
+                  <div class="card">
+                    {% if post.image %}
+                    <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
+                    {% endif %}
                     <div class="card-body">
-                        <h5 class="card-title">Textbook for CS 2150</h5>
-                        <p class="card-text">Lightly used, available for $25. DM me!</p>
+                      <h5 class="card-title">{{ post.title }}</h5>
+                      <p class="card-text">{{ post.content }}</p>
                     </div>
+                  </div>
                 </div>
-            </div>
-            <div class="col-md-4 post-card">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Mini Fridge</h5>
-                        <p class="card-text">Perfect for dorm rooms. $50 OBO.</p>
-                    </div>
-                </div>
-            </div>
+                {% endfor %}
+              </div>
             <!-- Add more cards dynamically later -->
         </div>
     </div>
