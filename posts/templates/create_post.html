@@ -4,18 +4,8 @@
   <h2>Create Post</h2>
   <form method="post" action="{% url 'create_post' %}" enctype="multipart/form-data">
     {% csrf_token %}
-    <div>
-      <label for="{{ form.title.id_for_label }}">Title:</label>
-      {{ form.title }}  <!-- Renders the title field -->
-    </div>
-    <div>
-      <label for="{{ form.content.id_for_label }}">Content:</label>
-      {{ form.content }}  <!-- Renders the content field -->
-    </div>
-    <div>
-      <label for="{{ form.image.id_for_label }}">Image:</label>
-      {{ form.image }}  <!-- Renders the image field -->
-    </div>
+    {{ form }}
+
     <button type="submit">Submit</button>
   </form>
 {% endblock %}
