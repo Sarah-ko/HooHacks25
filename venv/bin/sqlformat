@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #!/Users/adammerali/Desktop/HooHacks/HooHacks25/HooHacks25/venv/bin/python3
+=======
+#!/Users/adammerali/Desktop/HooHacks/HooHacks25/HooHacks25-1/venv/bin/python3
+>>>>>>> main
 # -*- coding: utf-8 -*-
 import re
 import sys

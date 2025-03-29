@@ -5,32 +5,82 @@
     <meta charset="UTF-8">
     <title>UVA Exchange</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
     <style>
-        .hero {
-            padding: 80px 0;
-            text-align: center;
-            background-color: #f8f9fa;
+        body {
+            margin: 0;
+            background: url("https://news.virginia.edu/sites/default/files/uva_sunset_aerial.jpg") no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
         }
-        .post-card {
-            margin-bottom: 20px;
-        }
+
         .navbar-custom {
-            background-color: #232D4B; /* UVA Navy Blue */
+            background-color: rgba(0, 0, 0, 0.7);
         }
-        .navbar-custom .navbar-brand,
-        .navbar-custom .btn {
-            color: white;
+
+        .navbar-brand {
+            font-family: 'Anton', sans-serif;
+            color: #E57200 !important;
+            font-size: 2rem;
         }
-        .navbar-custom .btn:hover {
-            opacity: 0.9;
-        }
+
         .btn-uva-orange {
-            background-color: #E57200; /* UVA Orange */
+            background-color: #E57200;
             color: white;
         }
+
         .btn-uva-orange:hover {
             background-color: #cc6600;
             color: white;
+        }
+
+        .hero {
+            padding: 100px 0 40px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .typing-container {
+    display: inline-block;
+    font-size: 1.5rem;
+    color: #ffffffcc;
+    margin-top: 10px;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+        .typing-text {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid white;
+            animation: typing 3s steps(30, end) forwards, blink 0.7s step-end infinite;
+            max-width: 100%;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink {
+            from, to { border-color: transparent }
+            50% { border-color: white }
+        }
+
+        .post-card {
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background-color: #ffffffdd;
+            color: #232D4B;
         }
     </style>
 </head>
@@ -38,14 +88,16 @@
     <!-- Navbar -->
     <nav class="navbar navbar-custom px-4 d-flex justify-content-between">
         <!-- Left side -->
-        <a class="navbar-brand fs-4" href="#">UVA Exchange</a>
+        <a class="navbar-brand" href="#">UVA Exchange</a>
 
         <!-- Right side -->
         <div class="d-flex align-items-center gap-2">
             <a href="/create" class="btn btn-uva-orange">Create Post</a>
-            <a href="/checkout" class="btn btn-outline-light">Cart</a>
+            <a href="/checkout" class="btn text-white">
+                <i class="bi bi-cart-fill" style="font-size: 1.5rem;"></i>
+            </a>
             {% if user.is_authenticated %}
-                <a href="{% url 'logout' %}" class="btn btn-outline-light">Logout</a>
+                <span class="text-white me-2">Hi, {{ user.first_name }}</span>
             {% else %}
                 <a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}" class="btn btn-outline-light">
                     Login with Google
@@ -56,7 +108,8 @@
 
     <!-- Hero Section -->
     <div class="hero">
-        <h1 class="display-4">Welcome to UVA Exchange</h1>
+        <h1>Welcome to UVA Exchange</h1>
+        <div class="typing-text">Buy, sell, and share with fellow Hoos!</div>
     </div>
 
     <!-- Posts Section -->
