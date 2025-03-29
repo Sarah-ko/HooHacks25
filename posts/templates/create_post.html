@@ -2,9 +2,11 @@
 
 {% block content %}
   <h2>Create Post</h2>
-  <form method="post" enctype="multipart/form-data">
+  <form method="post" action="{% url 'create_post' %}" enctype="multipart/form-data">
     {% csrf_token %}
+    <!-- Render the form fields dynamically -->
     {{ form.as_p }}
+  
     <button type="submit">Submit</button>
   </form>
 {% endblock %}

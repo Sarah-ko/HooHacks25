@@ -6,6 +6,7 @@ from .models import Post
 # Create your views here.
 @login_required
 def create_post(request):
+    print("In create_post view")
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
@@ -13,9 +14,11 @@ def create_post(request):
             post.author = request.user
             post.save()
             return redirect('home')
+        else:
+            print(form.errors)
     else:
         form = PostForm()
-    return render(request, 'posts/create_post.html', {'form': form})
+    return render(request, 'create_post.html', {'form': form})
 
 @login_required
 def user_posts(request):
