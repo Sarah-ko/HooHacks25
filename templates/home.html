@@ -89,12 +89,12 @@
     <nav class="navbar navbar-custom px-4 d-flex justify-content-between">
         <!-- Left side -->
         <a class="navbar-brand" href="#">UVA Exchange</a>
-
+ 
         <!-- Right side -->
         <div class="d-flex align-items-center gap-2">
             <a href="/create" class="btn btn-uva-orange">Create Post</a>
             <a href="/checkout" class="btn text-white">
-                <i class="bi bi-heart-fill" style="font-size: 1.5rem;"></i>
+                <i class="bi bi-heart-fill" style="font-size: 1.8rem; color: red;"></i>
             </a>
             {% if user.is_authenticated %}
                 <span class="text-white me-2">Hi, {{ user.first_name }}</span>
