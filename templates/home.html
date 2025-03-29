@@ -55,25 +55,6 @@
     font-family: 'Segoe UI', sans-serif;
 }
 
-        .typing-text {
-            display: inline-block;
-            overflow: hidden;
-            white-space: nowrap;
-            border-right: 2px solid white;
-            animation: typing 3s steps(30, end) forwards, blink 0.7s step-end infinite;
-            max-width: 100%;
-        }
-
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-
-        @keyframes blink {
-            from, to { border-color: transparent }
-            50% { border-color: white }
-        }
-
         .post-card {
             margin-bottom: 20px;
         }
@@ -89,12 +70,12 @@
     <nav class="navbar navbar-custom px-4 d-flex justify-content-between">
         <!-- Left side -->
         <a class="navbar-brand" href="#">UVA Exchange</a>
-
+ 
         <!-- Right side -->
         <div class="d-flex align-items-center gap-2">
             <a href="{% url 'create_post' %}" class="btn btn-uva-orange">Create Post</a>
             <a href="/checkout" class="btn text-white">
-                <i class="bi bi-cart-fill" style="font-size: 1.5rem;"></i>
+                <i class="bi bi-heart-fill" style="font-size: 1.8rem; color: red;"></i>
             </a>
             {% if user.is_authenticated %}
                 <span class="text-white me-2">Hi, {{ user.first_name }}</span>
@@ -106,33 +87,32 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <div class="hero">
         <h1>Welcome to UVA Exchange</h1>
-        <div class="typing-text">Buy, sell, and share with fellow Hoos!</div>
+        <div style="color: white;">Buy, sell, and share with fellow Hoos!</div>
     </div>
+    
 
     <!-- Posts Section -->
     <div class="container">
         <h3 class="mb-4">Recent Posts</h3>
         <div class="row">
             <!-- Example post cards - replace with loop when connected to database -->
-            <div class="col-md-4 post-card">
-                <div class="card">
+            <div class="row">
+                {% for post in posts %}
+                <div class="col-md-4 post-card">
+                  <div class="card">
+                    {% if post.image %}
+                    <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
+                    {% endif %}
                     <div class="card-body">
-                        <h5 class="card-title">Textbook for CS 2150</h5>
-                        <p class="card-text">Lightly used, available for $25. DM me!</p>
+                      <h5 class="card-title">{{ post.title }}</h5>
+                      <p class="card-text">{{ post.content }}</p>
                     </div>
+                  </div>
                 </div>
-            </div>
-            <div class="col-md-4 post-card">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Mini Fridge</h5>
-                        <p class="card-text">Perfect for dorm rooms. $50 OBO.</p>
-                    </div>
-                </div>
-            </div>
+                {% endfor %}
+              </div>
             <!-- Add more cards dynamically later -->
         </div>
     </div>

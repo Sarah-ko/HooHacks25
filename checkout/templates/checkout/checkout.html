@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h2 class="mb-4 text-center">
+      <i class="bi bi-heart-fill text-danger"></i> Your Liked Posts
+    </h2>
+
+    {% if liked_posts %}
+      <div class="row">
+        {% for post in liked_posts %}
+          <div class="col-md-4 mb-4">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">{{ post.title }}</h5>
+                <p class="card-text">{{ post.content|truncatewords:20 }}</p>
+                <a href="{% url 'post_detail' post.id %}" class="btn btn-sm btn-outline-primary">View</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="text-center">You haven’t liked any posts yet.</p>
+    {% endif %}
+  </div>
+{% endblock %}
