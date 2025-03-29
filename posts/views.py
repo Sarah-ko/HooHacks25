@@ -2,10 +2,11 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import PostForm
-from .models import Post
+from .models import Post, Like
 
 def home_view(request):
     posts = Post.objects.all()
+
     return render(request, 'home.html', {'posts' : posts})
 
 # Create your views here.
@@ -32,3 +33,19 @@ def user_posts(request):
     posts = Post.objects.filter(author=request.user)
     
     return render(request, 'user_posts.html', {'posts': posts})
+
+@login_required
+def like_post(request, post_id):
+    post = Post.objects.get(id=post_id)
+    
+    # Check if the user has already liked the post
+    existing_like = Like.objects.filter(user=request.user, post=post).first()
+    
+    if existing_like:
+        # already liked the post, remove the like
+        existing_like.delete()
+    else:
+        #hasn't liked the post yet, create a like
+        Like.objects.create(user=request.user, post=post)
+    
+    return redirect('home')
