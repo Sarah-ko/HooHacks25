@@ -5,7 +5,8 @@ from .forms import PostForm
 from .models import Post
 
 def home_view(request):
-    return render(request, 'home.html')
+    posts = Post.objects.all()
+    return render(request, 'home.html', {'posts' : posts})
 
 # Create your views here.
 @login_required
@@ -24,6 +25,7 @@ def create_post(request):
         form = PostForm()
     
     return render(request, 'create_post.html', {'form': form})
+
 @login_required
 def user_posts(request):
     # Get all posts created by the logged-in user
