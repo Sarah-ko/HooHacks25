@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>UVA Exchange</title>
+    <title>ReHoos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
@@ -69,15 +69,12 @@
     <!-- Navbar -->
     <nav class="navbar navbar-custom px-4 d-flex justify-content-between">
         <!-- Left side -->
-        <a class="navbar-brand" href="#">UVA Exchange</a>
+        <a class="navbar-brand" href="#">ReHoos</a>
  
         <!-- Right side -->
         <div class="d-flex align-items-center gap-2">
             <a href="{% url 'create_post' %}" class="btn btn-uva-orange">Create Post</a>
             <a href="{% url 'user_posts' %}" class="btn btn-outline-light">My Posts</a>
-            <a href="/checkout" class="btn text-white">
-                <i class="bi bi-heart-fill" style="font-size: 1.8rem; color: red;"></i>
-            </a>
             {% if user.is_authenticated %}
                 <span class="text-white me-2">Hi, {{ user.first_name }}</span>
             {% else %}
@@ -89,7 +86,7 @@
     </nav>
 
     <div class="hero">
-        <h1>Welcome to UVA Exchange</h1>
+        <h1>Welcome to ReHoos</h1>
         <div style="color: white;">Buy, sell, and share with fellow Hoos!</div>
     </div>
     
